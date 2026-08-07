@@ -13,3 +13,9 @@ Download our latest desktop apps for additional integrations like [Smart Lightin
 
 ### [Download the OSX App](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/latest/download/Sonoran-Studio-macOS.dmg)
 
+## Game Plugins
+
+### [Download the LSPDFR Lighting Plugin](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/lspdfr-latest/Sonoran-Studio-LSPDFR.zip)
+
+Requires the Windows app, LSPDFR, and RAGE Plugin Hook. Follow the [LSPDFR lighting install guide](smart-lighting.md#lspdfr).
+

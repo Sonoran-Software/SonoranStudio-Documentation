@@ -13,7 +13,7 @@ Smart Lighting requires the [Pro version of Sonoran Studio](pricing.md) and the 
 
 ## What is Smart Lighting?
 
-Sonoran Studio connects to smart lightbulbs to toggle and change colors based on stream events. With additional integrations for FiveM and ER:LC you can even create custom lighting patterns for emergency lights, hazards, turn signals, and more!
+Sonoran Studio connects to smart lightbulbs to toggle and change colors based on stream events. With additional integrations for FiveM, LSPDFR, and ER:LC you can create custom lighting patterns for emergency lights, hazards, turn signals, and more!
 
 ## What Bulbs are Supported?
 
@@ -60,7 +60,7 @@ Light sequences tell Studio which bulbs to use, what color each bulb should disp
 
 ### 1. Choose a game source
 
-Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM** or **ER:LC**. The scene editor only shows events supported by the selected game.
+Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM**, **LSPDFR**, or **ER:LC**. The scene editor only shows events supported by the selected game.
 
 ### 2. Connect your lights
 
@@ -102,6 +102,25 @@ Configuring Smart Lighting for FiveM is easy!
 Ensure your FiveM community is using the latest version of the Sonoran CAD FiveM resource. Once in-game, your smart lighting events will be automatically synced to the desktop app.
 
 FiveM scenes include emergency lights, turn signals, hazards, CAD unit statuses, and panic activity. Keep the Sonoran CAD resource running and the Studio desktop app open.
+
+### LSPDFR
+
+The Sonoran Studio LSPDFR plugin synchronizes emergency lights, left and right indicators, and hazards through RAGE Plugin Hook. It only connects to the Studio desktop app on your computer.
+
+{% hint style="info" %}
+You need LSPDFR, RAGE Plugin Hook, the Sonoran Studio Windows app, and Studio Pro or Sonoran One.
+{% endhint %}
+
+#### Install the plugin
+
+1. [Download the LSPDFR lighting plugin](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/lspdfr-latest/Sonoran-Studio-LSPDFR.zip).
+2. Close GTA V and RAGE Plugin Hook.
+3. Extract the ZIP into your **Grand Theft Auto V** folder. Confirm this file exists: `Grand Theft Auto V\Plugins\SonoranStudio.LSPDFR.dll`.
+4. Open RAGE Plugin Hook settings and enable **Load all plugins on startup**.
+5. Open the Sonoran Studio Windows app, go to **Lighting**, and select **LSPDFR**.
+6. Start GTA V through RAGE Plugin Hook and launch LSPDFR. Keep Sonoran Studio open while playing.
+
+The plugin sends changes only to `127.0.0.1:9990`; it does not connect to a game server or expose a public port. If it does not load, open the RAGE Plugin Hook console with **F4** and run `LoadPlugin "SonoranStudio.LSPDFR.dll"`, then check `RagePluginHook.log` for a Sonoran Studio message.
 
 ### ER:LC
 
