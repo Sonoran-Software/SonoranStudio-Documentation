@@ -23,9 +23,7 @@ Studio only lists lights that expose the color and power controls required by th
 Smart lights are third-party products. Their manufacturers may change or retire cloud and local APIs. Match the exact brand, family, and requirements below before purchasing.
 {% endhint %}
 
-{% hint style="info" %}
-Amazon links on this page are affiliate links. As an Amazon Associate, Sonoran Software may earn from qualifying purchases.
-{% endhint %}
+Amazon links point to an exact product page when the model could be verified. Links marked **Amazon search** open a model-specific search; confirm the model or family shown below before ordering.
 
 <details>
 
@@ -42,8 +40,10 @@ Wyze connects through the Wyze cloud and requires the four account values shown 
 
 Supported color bulbs:
 
-* [Wyze Bulb Color A19, 2-pack](https://amzn.to/4wNzeyc)
-* [Wyze Bulb Color BR30, 2-pack](https://amzn.to/4z2rk5k)
+* [Wyze Bulb Color A19, 2-pack](https://www.amazon.com/dp/B08WZ5THJ7?tag=sonoransoftwa-20)
+* [Wyze Bulb Color BR30, 2-pack](https://www.amazon.com/dp/B0CJN1FWX7?tag=sonoransoftwa-20)
+* [Wyze Light Strip (Amazon search)](https://www.amazon.com/s?k=Wyze+Light+Strip&tag=sonoransoftwa-20)
+* [Wyze Light Strip Pro](https://www.amazon.com/dp/B09K11GNFP?tag=sonoransoftwa-20)
 
 Wyze Light Strip and Light Strip Pro are detected by the current integration and receive a single solid RGB color across the strip. Segment and effect control are not supported. Because Wyze does not publish device-control rate limits for this endpoint, use frame delays of **1,000 ms or longer** for the most reliable sequences.
 
@@ -66,10 +66,17 @@ Philips Hue uses the local Hue Bridge API. A Hue Bridge is required, including f
 
 Compatible Hue families include color A19/BR30 bulbs, Lightstrip Plus and Gradient lightstrips, Play light bars, Go, Iris, Bloom, and Signe lights when paired to a Hue Bridge. Studio sets one color for the whole light and does not address gradient segments or entertainment areas.
 
-* [Starter kit with Hue Bridge and color bulbs](https://amzn.to/45JQcBo)
-* [Single color bulb](https://amzn.to/4xrsG8h)
-* [Color bulb 4-pack](https://amzn.to/4xkzi8f)
-* [Hue Lightstrip Plus base kit](https://amzn.to/4wOFeXx)
+* [Starter kit with Hue Bridge and color bulbs](https://www.amazon.com/dp/B09BSHFLD9?tag=sonoransoftwa-20)
+* [Single color bulb](https://www.amazon.com/dp/B0FMGTPGGT?tag=sonoransoftwa-20)
+* [Color bulb 4-pack](https://www.amazon.com/dp/B0FMH5C2CB?tag=sonoransoftwa-20)
+* [Hue Lightstrip Plus base kit](https://www.amazon.com/dp/B08CKJWSFS?tag=sonoransoftwa-20)
+* [White and color ambiance BR30 (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+White+and+Color+Ambiance+BR30&tag=sonoransoftwa-20)
+* [Gradient lightstrips (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Gradient+Lightstrip&tag=sonoransoftwa-20)
+* [Play light bars (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Play+Light+Bar&tag=sonoransoftwa-20)
+* [Hue Go (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Go&tag=sonoransoftwa-20)
+* [Hue Iris (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Iris&tag=sonoransoftwa-20)
+* [Hue Bloom (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Bloom&tag=sonoransoftwa-20)
+* [Hue Signe (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Signe&tag=sonoransoftwa-20)
 
 The Hue API recommends approximately **10 light commands per second**. Studio now queues Bridge writes at 100 ms intervals; use frame delays of at least **100 ms**, and longer delays for large groups. See the official [Hue rate-limit guidance](https://developers.meethue.com/support/) and [Hue Bridge overview](https://www.philips-hue.com/en-us/explore-hue/faq/controls/what-is-the-hue-bridge).
 
@@ -90,11 +97,11 @@ Govee connects through the official cloud API and requires a [Govee API key](htt
 
 API-verified examples from Govee's [official supported-model list](https://developer.govee.com/docs/support-product-model):
 
-* H6008 A19 bulb — [4-pack on Amazon](https://amzn.to/4fMMsVK)
-* H605C Envisual TV Backlight T2 — [75–85 inch kit on Amazon](https://amzn.to/4bxpKyy)
-* H607C Floor Lamp 2
-* H6062 Glide RGBIC 3D Wall Light
-* H7055 Outdoor Pathway Lights
+* H6008 A19 bulb — [4-pack on Amazon](https://www.amazon.com/dp/B09B7NQT2K?tag=sonoransoftwa-20)
+* H605C Envisual TV Backlight T2 — [75–85 inch kit on Amazon](https://www.amazon.com/dp/B0BCQBVSDT?tag=sonoransoftwa-20)
+* H607C Floor Lamp 2 — [Amazon](https://www.amazon.com/dp/B0CTH2QF23?tag=sonoransoftwa-20)
+* H6062 Glide RGBIC 3D Wall Light — [Amazon](https://www.amazon.com/dp/B091L21GZK?tag=sonoransoftwa-20)
+* H7055 Outdoor Pathway Lights — [Amazon search](https://www.amazon.com/s?k=Govee+H7055+Outdoor+Pathway+Lights&tag=sonoransoftwa-20)
 
 Many other Govee Wi-Fi products may appear automatically when the API reports both required capabilities. Bluetooth-only products are not supported. Studio applies one RGB color to the whole device; RGBIC segments, DreamView, scenes, and music effects are not controlled.
 
@@ -117,20 +124,19 @@ Nanoleaf uses its local OpenAPI on port `16021`; no cloud account or hub is requ
 
 Studio validates that the device reports RGB hue and saturation controls before adding it. Supported RGB families documented by Nanoleaf include:
 
-* Shapes, Canvas, Lines, Light Panels, and Skylight
-* Holiday String Lights (NL71K1/NL71K2)
-* Indoor HD Lightstrip (NL72K1) and Indoor Lightstrip (NL72K3)
-* Floor Lamp (NL72K4) and Rope Lights (NL72K6)
-* Outdoor String Lights (NL73K1) and Permanent Outdoor Lights (NL73K3)
-* Wi-Fi A19 bulb (NL75K1)
+* [Shapes](https://www.amazon.com/s?k=Nanoleaf+Shapes&tag=sonoransoftwa-20), [Canvas](https://www.amazon.com/s?k=Nanoleaf+Canvas&tag=sonoransoftwa-20), [Lines](https://www.amazon.com/s?k=Nanoleaf+Lines&tag=sonoransoftwa-20), [Light Panels](https://www.amazon.com/s?k=Nanoleaf+Light+Panels&tag=sonoransoftwa-20), and [Skylight](https://www.amazon.com/s?k=Nanoleaf+Skylight&tag=sonoransoftwa-20) (Amazon searches)
+* Holiday String Lights NL71K1/NL71K2 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL71K1+NL71K2&tag=sonoransoftwa-20)
+* Indoor HD Lightstrip NL72K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K1&tag=sonoransoftwa-20)
+* Indoor Lightstrip NL72K3 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K3&tag=sonoransoftwa-20)
+* Floor Lamp NL72K4 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K4&tag=sonoransoftwa-20)
+* Rope Lights NL72K6 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K6&tag=sonoransoftwa-20)
+* Outdoor String Lights NL73K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL73K1&tag=sonoransoftwa-20)
+* Permanent Outdoor Lights NL73K3 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL73K3&tag=sonoransoftwa-20)
+* Wi-Fi A19 bulb NL75K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL75K1&tag=sonoransoftwa-20)
 
 Elements panels are not listed because they do not expose the RGB controls Studio requires. Studio controls one solid color for the entire device; panel layouts, per-panel colors, and effects are not controlled.
 
 Nanoleaf's official OpenAPI recommends no more than **10 updates per second**. Studio enforces a 100 ms interval per device. See the official [OpenAPI overview](https://nanoleaf.atlassian.net/wiki/spaces/nlapid/overview), [Light Panels OpenAPI](https://nanoleaf.atlassian.net/wiki/spaces/NOAD1/pages/2789310530), and [Matter Wi-Fi OpenAPI model list](https://nanoleaf.atlassian.net/wiki/spaces/nlapid/pages/2296381472/Nanoleaf%2BMatter%2BWiFi%2BEssentials%2BOpen%2BAPI%2BDocumentation).
-
-{% hint style="info" %}
-No exact, active Amazon listing could be verified for the official RGB OpenAPI models during the latest documentation review. We will add an affiliate link only after the listing exposes a matching Nanoleaf model number; do not purchase a similarly named marketplace light on compatibility alone.
-{% endhint %}
 
 </details>
 
@@ -149,7 +155,16 @@ LIFX connects directly over the official local LAN protocol. No LIFX cloud token
 
 Studio queries the vendor and product ID of every responding device and checks it against LIFX's official [machine-readable product registry](https://github.com/LIFX/products). A device is listed only when that exact product declares `color: true`. This covers the RGB versions of LIFX Color A19/A21/BR30/GU10 bulbs, Mini Color, Clean, Downlight, Z/Lightstrip, Beam, Tile, Candle Color, Neon, String, Ceiling, Spot, Path, PAR38, Tube, Luna, Mirror, and RGB outdoor families in the current registry.
 
-* [LIFX Color A19 1100-lumen, 2-pack](https://amzn.to/4z6fE1t)
+Amazon links for registry-backed RGB families:
+
+* [Color A19 1100-lumen, 2-pack](https://www.amazon.com/dp/B08FWH238Y?tag=sonoransoftwa-20)
+* [Color A21](https://www.amazon.com/s?k=LIFX+Color+A21&tag=sonoransoftwa-20), [Color BR30](https://www.amazon.com/s?k=LIFX+Color+BR30&tag=sonoransoftwa-20), and [Color GU10](https://www.amazon.com/s?k=LIFX+Color+GU10&tag=sonoransoftwa-20) (Amazon searches)
+* [Mini Color](https://www.amazon.com/s?k=LIFX+Mini+Color&tag=sonoransoftwa-20), [Clean](https://www.amazon.com/s?k=LIFX+Clean&tag=sonoransoftwa-20), and [Color Downlight](https://www.amazon.com/s?k=LIFX+Color+Downlight&tag=sonoransoftwa-20) (Amazon searches)
+* [Z/Lightstrip](https://www.amazon.com/s?k=LIFX+Z+Lightstrip&tag=sonoransoftwa-20), [Beam](https://www.amazon.com/s?k=LIFX+Beam&tag=sonoransoftwa-20), and [Tile](https://www.amazon.com/s?k=LIFX+Tile&tag=sonoransoftwa-20) (Amazon searches)
+* [Candle Color](https://www.amazon.com/s?k=LIFX+Candle+Color&tag=sonoransoftwa-20), [Neon](https://www.amazon.com/s?k=LIFX+Neon&tag=sonoransoftwa-20), and [String Lights](https://www.amazon.com/s?k=LIFX+String+Lights&tag=sonoransoftwa-20) (Amazon searches)
+* [Ceiling](https://www.amazon.com/s?k=LIFX+Ceiling&tag=sonoransoftwa-20), [Spot](https://www.amazon.com/s?k=LIFX+Spot&tag=sonoransoftwa-20), and [Path](https://www.amazon.com/s?k=LIFX+Path&tag=sonoransoftwa-20) (Amazon searches)
+* [Color PAR38](https://www.amazon.com/s?k=LIFX+Color+PAR38&tag=sonoransoftwa-20), [Tube](https://www.amazon.com/s?k=LIFX+Tube&tag=sonoransoftwa-20), and [Luna](https://www.amazon.com/s?k=LIFX+Luna&tag=sonoransoftwa-20) (Amazon searches)
+* [Mirror](https://www.amazon.com/s?k=LIFX+Mirror&tag=sonoransoftwa-20) and [RGB outdoor families](https://www.amazon.com/s?k=LIFX+Outdoor+Color&tag=sonoransoftwa-20) (Amazon searches)
 
 LIFX White, White-to-Warm, Day & Dusk, Filament, and Switch products are excluded because they do not declare RGB color capability. Unknown product IDs also remain hidden until their capabilities can be verified. Studio applies one solid color to the entire light; it does not address individual Beam, Tile, Candle, String, or lightstrip zones.
 
@@ -172,7 +187,7 @@ WLED connects directly to each controller's local JSON API. Studio requires WLED
 
 Studio treats each WLED controller as one light. A color update switches every configured segment to the Solid effect and applies the same RGB color and full brightness across those segments. Existing per-segment colors and effects are intentionally replaced while a Studio scene is active.
 
-* [WLED pre-installed Wi-Fi controller for 5V WS2811/WS2812B LEDs](https://amzn.to/4cuMU8X)
+* [WLED pre-installed Wi-Fi controller for 5V WS2811/WS2812B LEDs](https://www.amazon.com/dp/B0BPYR92YP?tag=sonoransoftwa-20)
 
 The linked controller appears on WLED's official [compatible-controller list](https://kno.wled.ge/basics/compatible-controllers/) under Domestic Automation. WLED supports many other pre-flashed and DIY controllers, but the controller, power supply, strip voltage, data signaling, fusing, and wiring must all match. Follow WLED's hardware guidance rather than treating every product whose listing says “WLED” as equivalent.
 
