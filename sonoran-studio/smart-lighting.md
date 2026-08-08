@@ -13,7 +13,7 @@ Smart Lighting requires the [Pro version of Sonoran Studio](pricing.md) and the 
 
 ## What is Smart Lighting?
 
-Sonoran Studio connects to supported RGB lights to toggle and change colors based on stream events. With the FiveM, LSPDFR, and ER:LC integrations, you can build custom patterns for emergency lights, hazards, turn signals, panic activity, and more.
+Sonoran Studio connects to supported RGB lights to toggle and change colors based on stream events. With the FiveM, LSPDFR, and ER:LC integrations, you can build custom patterns for emergency lights, hazards, and turn signals. The same realtime Sonoran CAD and Radio events that power Studio widgets can trigger lighting sequences for transmissions, unit updates, calls, dispatch activity, and panic changes.
 
 ## What Lights are Supported?
 
@@ -208,11 +208,11 @@ The WLED API explicitly advises clients not to make requests in parallel. Studio
 
 ## Creating Light Sequences
 
-Light sequences tell Studio which lights to use, what color each light should display, and how long each frame should remain active. Each game or CAD event has its own saved sequence.
+Light sequences tell Studio which lights to use, what color each light should display, and how long each frame should remain active. Each game or CAD/Radio widget event has its own saved sequence.
 
 ### 1. Choose a game source
 
-Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM**, **LSPDFR**, or **ER:LC**. The scene editor only shows events supported by the selected game.
+Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM**, **LSPDFR**, or **ER:LC**. The scene editor shows the events supported by that game followed by the CAD and Radio widget events, which are available with any selected game.
 
 ### 2. Connect your lights
 
@@ -220,7 +220,7 @@ Under **Connect devices**, choose your provider and follow the connection steps.
 
 ### 3. Select the event
 
-Under **Build event scenes**, use **Scene event** to select the event you want to configure, such as **Panic**, **Emergency lights**, **Left signal**, or **Hazards**. Every event saves a separate sequence.
+Under **Build event scenes**, use **Scene event** to select the event you want to configure, such as **Emergency lights**, **Radio transmission started**, **Call attached**, or **Panic ended**. Game events and CAD/Radio widget events appear in separate groups. Every event saves a separate sequence.
 
 ### 4. Build the frames
 
@@ -238,7 +238,27 @@ Each frame can control a different set of lights. A light that is not selected i
 
 Changes save automatically on this computer. Select **Test once** to play Frame 1 through the final frame one time before going live.
 
-When the corresponding live event occurs, Studio loops the saved sequence until another lighting event takes over. Single-frame scenes remain on their configured colors. Testing, direct light control, or another sequence cancels the sequence currently playing.
+When a live game or unit-status state occurs, Studio loops that saved sequence until another state takes over. A CAD/Radio widget-event sequence plays once, holding each frame for its configured delay, and then resumes the newest active game or unit-status scene. A newer widget event replaces one already playing, while active panic lighting blocks unrelated widget events. Testing, direct light control, or another sequence cancels the sequence currently playing.
+
+## CAD and Radio Widget Events
+
+The Studio desktop app receives these events through the same authenticated realtime connection used by the overlay widgets. Configure any of them under **CAD & Radio widget events** in the scene selector.
+
+| Scene event | When it runs |
+| --- | --- |
+| Radio transmission started | A radio transmission begins |
+| Radio transmission ended | The active radio transmission finishes |
+| Radio channel changed | Your active Radio channel changes |
+| Unit status changed | Your CAD unit receives a status update |
+| Call attached | You attach to a different CAD call |
+| Attached call changed | The currently attached call updates |
+| Call detached | You detach from the active CAD call |
+| Call note | A dispatch notification is identified as a call note |
+| Dispatch notification | Any other CAD dispatch notification arrives |
+| Panic started | A panic visible to your Studio overlay activates |
+| Panic ended | That visible panic clears |
+
+Location-only unit updates do not trigger **Unit status changed**, preventing routine location refreshes from repeatedly interrupting lighting. Widget-event scenes are optional: an event with no saved frames leaves the current lighting scene unchanged.
 
 ## Integrated Games
 
