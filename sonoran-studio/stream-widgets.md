@@ -29,6 +29,12 @@ Customizing your widgets is simple. Toggle on specific widgets, drag them around
 
 Additionally when a widget selected, the background colors, font size, icons, and more can be edited.
 
+Open **Icons & Sharing** to upload separate icons for CAD widgets, Radio widgets, and the **Unit HUD** bodycam display. Unit HUD icon changes apply only to the bodycam HUD, so the remaining CAD widgets can keep their own icon.
+
+For temporary notification widgets, select **TEST** to show the example in both the canvas editor and every connected stream browser source using that layout. Keep your OBS, TikTok LIVE Studio, or Streamlabs browser source active while testing. Select **HIDE** to remove the editor preview; the live example closes automatically according to the widget's notification duration.
+
+Studio includes separate temporary **Radio Tone** and **CAD Tone** widgets. Radio Tone appears when a tone is played to your Radio client. CAD Tone appears when your signed-in CAD client is one of the recipients selected for a tone. Each widget has its own position, styling, animation, display duration, and **TEST** control, so a CAD tone and Radio tone do not replace one another.
+
 <div><figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure></div>
 
 ### LSPDFR Widget Support

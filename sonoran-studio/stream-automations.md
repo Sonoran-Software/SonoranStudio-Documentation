@@ -60,6 +60,10 @@ Choose a Streamer.bot action beside each Sonoran event. Select **Test** to invok
 | --- | --- | --- |
 | Radio starts | A radio transmission begins | `radio.started` |
 | Radio ends | The active radio transmission finishes | `radio.ended` |
+| Emergency call rings | A Radio emergency call begins ringing | `radio.emergency.ringing` |
+| Emergency call talking | Someone talks on an active Radio emergency call | `radio.emergency.talking` |
+| Radio tone | A tone plays in your Radio client | `radio.tone` |
+| CAD tone | A tone addressed to your signed-in CAD client plays | `cad.tone` |
 | Unit status | Your CAD unit receives a status update | `unit.status` |
 | Call attached | You attach to a different CAD call | `call.attached` |
 | Call changed | The active call updates, or you detach from it | `call.changed` |
@@ -97,7 +101,9 @@ Gameplay actions receive `sonoranSource` as `fivem` or `lspdfr`. Depending on th
 
 Studio also includes the following values when they are available for the event or current overlay state:
 
-`communityId`, `serverId`, `unit`, `displayName`, `unitNumber`, `department`, `status`, `location`, `postal`, `callsign`, `channel`, `priority`, `callId`, `title`, and `message`.
+`communityId`, `serverId`, `unit`, `displayName`, `unitNumber`, `department`, `status`, `location`, `postal`, `callsign`, `channel`, `priority`, `callId`, `title`, `message`, `toneName`, `toneNames`, and `emergencyCall`.
+
+Tone actions receive `toneName` for the first tone and `toneNames` for the complete tone sequence when available. Radio emergency-call actions receive `emergencyCall` as `true`.
 
 Panic actions additionally receive:
 
