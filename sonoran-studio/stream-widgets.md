@@ -31,6 +31,20 @@ Additionally when a widget selected, the background colors, font size, icons, an
 
 <div><figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure></div>
 
+### LSPDFR Widget Support
+
+The [Sonoran Studio LSPDFR plugin](smart-lighting.md#lspdfr) can populate three overlay widgets without a Sonoran CAD community:
+
+| Widget | Data available from LSPDFR |
+| --- | --- |
+| Unit HUD | Player persona name, agency, derived status, and current GTA street/area |
+| Attached Call | Generated session call ID, callout name, and callout street/area after acceptance |
+| Dispatch Notification | Callout name, message, and advisory when a callout is displayed |
+| Radio Transmission | Not supported by LSPDFR |
+| Panic | Not supported by LSPDFR |
+
+LSPDFR does not natively provide a callsign/unit number, postal, call priority/code, radio activity, or panic state. Missing rows use your configured fallback or remain blank. For location, select **Full** precision; **Postal only** has no LSPDFR postal value to display. See the [LSPDFR support details and install guide](smart-lighting.md#lspdfr) for lifecycle behavior and callout-pack compatibility.
+
 ### 4. Add Source to Streaming App
 
 Once your widgets are configured, it's time to add them to your Stream! Select the **Setup Guide** for specific instructions for your platform. You will copy the **Browser Source URL** in the studio and add a new browser layer in your streaming app.
@@ -76,4 +90,4 @@ Verify the source width and height, reset its transform, and fit it to the scene
 
 ### 5. Stream!
 
-Next, it's time to go live! Make sure you are logged into a Sonoran CAD or Radio community using the same account as the Studio app for data to show in your widgets.
+Next, it's time to go live! For CAD or Radio widgets, make sure you are logged into the community using the same account as the Studio app. For LSPDFR widgets, keep the signed-in Studio Windows app open, select **LSPDFR** under Lighting, and run the Studio LSPDFR plugin.

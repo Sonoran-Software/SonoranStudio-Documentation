@@ -15,7 +15,11 @@ Download our latest desktop apps for additional integrations like [Smart Lightin
 
 ## Game Plugins
 
-### [Download the LSPDFR Lighting Plugin](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/lspdfr-latest/Sonoran-Studio-LSPDFR.zip)
+### [Download the Standalone FiveM Resource](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/fivem-latest/Sonoran-Studio-FiveM.zip)
 
-Requires the Windows app, LSPDFR, and RAGE Plugin Hook. Follow the [LSPDFR lighting install guide](smart-lighting.md#lspdfr).
+Connects FiveM directly to the Studio desktop app without requiring Sonoran CAD. Follow the [FiveM install guide](smart-lighting.md#fivem).
+
+### [Download the LSPDFR Integration](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/lspdfr-latest/Sonoran-Studio-LSPDFR.zip)
+
+Requires the Windows app, LSPDFR, and RAGE Plugin Hook. Follow the [LSPDFR install and overlay support guide](smart-lighting.md#lspdfr).
 

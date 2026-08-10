@@ -60,8 +60,12 @@ All `POST` requests must use `Content-Type: application/json`.
 | `POST` | `/api/v1/streamerbot/actions` | Invoke any Streamer.bot action by ID or name |
 | `POST` | `/api/v1/streamerbot/events` | Invoke the action mapped to a Sonoran event |
 | `POST` | `/lighting` | Legacy FiveM-compatible named lighting state endpoint |
+| `POST` | `/fivem` | Bundled FiveM integration endpoint for gameplay moments |
+| `POST` | `/lspdfr` | Bundled LSPDFR plugin endpoint for lighting state, gameplay moments, and validated overlay events |
 
 Successful JSON responses contain `"ok": true`. Errors contain `"ok": false`, an `error` code, and a human-readable `message`.
+
+The unversioned `/fivem` and `/lspdfr` routes are reserved for bundled Sonoran Studio game integrations. Third-party integrations should use the versioned `/api/v1` endpoints; LSPDFR overlay events are accepted only through the signed-in Studio desktop session.
 
 ## Status and discovery
 
@@ -297,7 +301,11 @@ Supported mapped events are:
 
 ```text
 radio.started, radio.ended, unit.status, call.attached, call.changed,
-call.note, dispatch.notification, panic.started, panic.ended
+call.note, dispatch.notification, panic.started, panic.ended,
+game.weapon.drawn, game.weapon.holstered, game.player.died,
+game.player.returned, game.travel.on_foot, game.travel.vehicle,
+game.travel.aircraft, game.travel.watercraft, game.health.low,
+game.health.recovered
 ```
 
 If no action is mapped to the event, Studio returns HTTP `409`.

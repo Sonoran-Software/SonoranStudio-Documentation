@@ -263,7 +263,7 @@ Device sequences tell Studio which lights or outlets to use and how long each fr
 
 ### 1. Choose a game source
 
-Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM**, **LSPDFR**, or **ER:LC**. The scene editor shows the events supported by that game followed by the CAD and Radio widget events, which are available with any selected game.
+Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM**, **LSPDFR**, or **ER:LC**. The scene editor shows the persistent lighting states supported by that game, FiveM/LSPDFR gameplay moments when available, and the CAD and Radio widget events.
 
 ### 2. Connect your devices
 
@@ -271,7 +271,16 @@ Under **Connect devices**, choose your provider and follow the connection steps.
 
 ### 3. Select the event
 
-Under **Build event scenes**, use **Scene event** to select the event you want to configure, such as **Emergency lights**, **Radio transmission started**, **Call attached**, or **Panic ended**. Game events and CAD/Radio widget events appear in separate groups. Every event saves a separate sequence.
+Under **Build event scenes**, use **Scene event** to select the event family you want to configure, such as **Emergency lights**, **Health threshold**, **Transmission started**, **Status changed**, or **Panic changed**. When a family has multiple choices, Studio adds a second selector beside it. Every final event choice saves a separate sequence.
+
+The grouped choices are:
+
+* **Status changed:** Any status, Available, Unavailable, Busy, En route, or On scene.
+* **Transmission started / ended:** My transmission, Other user transmission, or Any transmission. A configured scoped scene takes priority; otherwise Studio falls back to the matching Any transmission scene.
+* **Panic changed:** Started or Ended / cleared.
+* **Health threshold:** Drops below or Recovers above, with the 0–100 percentage box beside the selector.
+
+**No active game event** is the fallback scene used when FiveM, LSPDFR, or ER:LC is not reporting another active game-lighting state. **Panic active (continuous)** is the persistent panic scene; **Panic changed** contains the optional one-shot start and clear scenes.
 
 ### 4. Build the frames
 
@@ -289,7 +298,28 @@ Each frame can control a different set of devices. A light or outlet not selecte
 
 Changes save automatically on this computer. Select **Test once** to play Frame 1 through the final frame one time before going live.
 
-When a live game or unit-status state occurs, Studio loops that saved sequence until another state takes over. A CAD/Radio widget-event sequence plays once, holding each frame for its configured delay, and then resumes the newest active game or unit-status scene. A newer widget event replaces one already playing, while active panic lighting blocks unrelated widget events. Testing, direct light control, or another sequence cancels the sequence currently playing.
+When a live game or unit-status state occurs, Studio loops that saved sequence until another state takes over. A gameplay-moment or CAD/Radio widget-event sequence plays once, holding each frame for its configured delay, and then resumes the newest active game or unit-status scene. A newer one-shot event replaces one already playing, while active panic lighting blocks unrelated events. Testing, direct light control, or another sequence cancels the sequence currently playing.
+
+## FiveM and LSPDFR Gameplay Moments
+
+FiveM and LSPDFR report the same native-backed gameplay moments. Configure them under **FiveM & LSPDFR moments** in the scene selector. Each scene is optional and plays once when the transition occurs.
+
+| Scene event | When it runs |
+| --- | --- |
+| Weapon drawn | The player changes from unarmed to armed |
+| Weapon holstered | The player changes from armed to unarmed; changing weapons emits holstered, then drawn |
+| Player died | The player entity changes to dead |
+| Player revived | The player entity changes from dead to alive |
+| Travel · On foot | The player leaves a vehicle |
+| Travel · Vehicle | The player enters a road or other non-air/non-water vehicle class |
+| Travel · Aircraft | The player enters a helicopter or plane |
+| Travel · Watercraft | The player enters a boat |
+| Health threshold > Drops below | Usable player health crosses below the percentage you set |
+| Health threshold > Recovers above | After low health, usable health crosses above the percentage you set |
+
+Set each percentage in the **Threshold** box shown beside the Health threshold event, or under **Choose your game > Health event thresholds** after selecting FiveM or LSPDFR. The defaults are **Drops below 35%** and **Recovers above 50%**. Studio requires the recovery value to be above the lower value, creating a gap that prevents rapid switching near one boundary. These settings apply to both smart-device scenes and Streamer.bot actions.
+
+**Player revived** deliberately covers both respawns and framework revives. GTA's entity natives report dead versus alive, but do not identify which recovery flow a server or mod used.
 
 ## CAD and Radio Widget Events
 
@@ -297,31 +327,39 @@ The Studio desktop app receives these events through the same authenticated real
 
 | Scene event                | When it runs                                         |
 | -------------------------- | ---------------------------------------------------- |
-| Radio transmission started | A radio transmission begins                          |
-| Radio transmission ended   | The active radio transmission finishes               |
+| Transmission started       | My, another user's, or any radio transmission begins  |
+| Transmission ended         | My, another user's, or any radio transmission ends    |
 | Radio channel changed      | Your active Radio channel changes                    |
-| Unit status changed        | Your CAD unit receives a status update               |
+| Status changed             | Any update or the selected CAD status becomes active |
 | Call attached              | You attach to a different CAD call                   |
 | Attached call changed      | The currently attached call updates                  |
 | Call detached              | You detach from the active CAD call                  |
 | Call note                  | A dispatch notification is identified as a call note |
 | Dispatch notification      | Any other CAD dispatch notification arrives          |
-| Panic started              | A panic visible to your Studio overlay activates     |
-| Panic ended                | That visible panic clears                            |
+| Panic changed              | A visible panic starts or ends / clears              |
 
-Location-only unit updates do not trigger **Unit status changed**, preventing routine location refreshes from repeatedly interrupting lighting. Widget-event scenes are optional: an event with no saved frames leaves the current lighting scene unchanged.
+Location-only unit updates do not trigger **Status changed > Any status**, preventing routine location refreshes from repeatedly interrupting lighting. **Any status** is a one-shot scene; a named status scene remains active until the unit status changes. Widget-event scenes are optional: an event with no saved frames leaves the current lighting scene unchanged.
 
 ## Integrated Games
 
 ### FiveM
 
-Ensure your FiveM community is using the latest Sonoran CAD FiveM resource. Once in game, smart-lighting events automatically sync to the desktop app on local port `9990`.
+FiveM can connect through the latest Sonoran CAD FiveM resource or through the standalone Sonoran Studio resource. The standalone option does not require a CAD community and sends only to the Studio desktop app on the player's computer.
 
-FiveM scenes include emergency lights, turn signals, hazards, CAD unit statuses, and panic activity. Keep the Sonoran CAD resource running and the Studio desktop app open.
+#### Install the standalone resource
+
+1. [Download the standalone FiveM resource](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/fivem-latest/Sonoran-Studio-FiveM.zip).
+2. Extract the ZIP and copy the `sonoran_studio` folder into the server's `resources` folder.
+3. Add `ensure sonoran_studio` to `server.cfg`.
+4. Restart the server and keep the Sonoran Studio desktop app open while playing.
+
+Do not run the standalone resource alongside the Sonoran CAD FiveM resource; both contain the Studio bridge and would report every event twice. The default desktop port is `9990`. Players using a different local Studio port can run `/setstudioport PORT` in FiveM.
+
+FiveM scenes include emergency lights, turn signals, hazards, and the gameplay moments listed above. Sonoran CAD unit statuses, calls, Radio activity, and panic events remain available when the player is also signed into the corresponding Sonoran community.
 
 ### LSPDFR
 
-The Sonoran Studio LSPDFR plugin synchronizes emergency lights, left and right indicators, and hazards through RAGE Plugin Hook. It only connects to the Studio desktop app on your computer.
+The Sonoran Studio LSPDFR plugin synchronizes emergency lights, left and right indicators, hazards, officer details, location, and callout activity through RAGE Plugin Hook. The plugin itself only connects to the Studio desktop app on your computer. When you are signed in, the desktop app sends validated overlay events through your authenticated Studio session.
 
 {% hint style="info" %}
 You need LSPDFR, RAGE Plugin Hook, the Sonoran Studio Windows app, and Studio Pro or Sonoran One.
@@ -329,14 +367,34 @@ You need LSPDFR, RAGE Plugin Hook, the Sonoran Studio Windows app, and Studio Pr
 
 #### Install the plugin
 
-1. [Download the LSPDFR lighting plugin](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/lspdfr-latest/Sonoran-Studio-LSPDFR.zip).
+1. [Download the LSPDFR integration](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/lspdfr-latest/Sonoran-Studio-LSPDFR.zip).
 2. Close GTA V and RAGE Plugin Hook.
 3. Extract the ZIP into your **Grand Theft Auto V** folder. Confirm this file exists: `Grand Theft Auto V\Plugins\SonoranStudio.LSPDFR.dll`.
 4. Open RAGE Plugin Hook settings and enable **Load all plugins on startup**.
 5. Open the Sonoran Studio Windows app, go to **Lighting**, and select **LSPDFR**.
 6. Start GTA V through RAGE Plugin Hook and launch LSPDFR. Keep Sonoran Studio open while playing.
 
-The plugin sends changes only to `127.0.0.1:9990`; it does not connect to a game server or expose a public port. If it does not load, open the RAGE Plugin Hook console with **F4** and run `LoadPlugin "SonoranStudio.LSPDFR.dll"`, then check `RagePluginHook.log` for a Sonoran Studio message.
+#### Supported lighting and overlay data
+
+| Feature | LSPDFR support |
+| --- | --- |
+| Emergency lighting | Emergency lights, left indicator, right indicator, and hazards |
+| Gameplay moments | Weapon draw/holster, death/return, travel type, and configurable health lower/higher crossings |
+| Unit HUD | LSPDFR persona name, agency, current street/area, and derived duty status |
+| Attached Call | A locally generated call ID, callout name, and callout street/area after you accept it |
+| Dispatch Notification | The callout name, message, and advisory when LSPDFR presents a callout |
+| Radio Transmission | Not available from the native LSPDFR API |
+| Panic | Not available from the native LSPDFR API |
+
+LSPDFR gameplay moments run the same one-shot scenes as FiveM. Its overlay updates can also run the **Status changed**, **Call attached**, **Call detached**, and **Dispatch notification** event scenes configured in Studio.
+
+Studio derives the unit status from the LSPDFR callout lifecycle: **Available** while patrolling, **En Route** after accepting a callout, **On Scene** near the callout position, and **Unavailable** while off duty. LSPDFR does not expose the player's callsign/unit number, a postal code, or a standard call priority/response code through its native API. These fields remain blank or use your configured widget fallback. Set overlay location precision to **Full** to show LSPDFR street and area names; **Postal only** cannot show an LSPDFR location because no postal is available.
+
+Callout packs control the metadata they expose. If a pack omits a friendly name, message, advisory, or position, Studio shows the remaining supported fields without inventing the missing value.
+
+This support uses LSPDFR's documented callout lifecycle and functions from the [official LSPDFR API project](https://github.com/LMSDev/LSPDFR-API). Gameplay moments use GTA entity, weapon, ped, and vehicle natives through [RAGE Plugin Hook's documented native invocation API](https://ragepluginhook.net/RPH2PreDoc/), cross-checked against the [CitizenFX GTA V native documentation](https://github.com/citizenfx/natives). The callout field and handle patterns are also demonstrated by established open-source integrations including [External Police Computer](https://github.com/jullevistrunz/ExternalPoliceComputer/blob/main/ExternalPoliceComputer/ExternalPoliceComputer/EventListeners/CalloutEvents.cs), [ReportsPlusListener](https://github.com/Guess1m/ReportsPlusListener/blob/master/Utils/Data/EventUtils.cs), and [FirstResponseGPT](https://github.com/NathanWhite-hub/FirstResponse-GPT/blob/master/FirstResponseGPT/Utils/GameUtils.cs).
+
+The plugin sends changes only to `127.0.0.1:9990`; it does not connect directly to a game server or expose a public port. If it does not load, open the RAGE Plugin Hook console with **F4** and run `LoadPlugin "SonoranStudio.LSPDFR.dll"`, then check `RagePluginHook.log` for a Sonoran Studio message.
 
 ### ER:LC
 
