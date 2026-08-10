@@ -201,25 +201,48 @@ The WLED API explicitly advises clients not to make requests in parallel. Studio
 
 ### Smart Outlets
 
-#### Wyze
+<details>
+
+<summary>Wyze</summary>
 
 Wyze connects through the cloud. Studio supports Wyze Plug and each independently exposed outlet on Wyze Outdoor Plug. Use the same Wyze email, password, key ID, and API key described above.
 
-#### Govee
+* [Wyze Plug](https://www.amazon.com/dp/B07XZT24B8?tag=sonoransoftwa-20)
+* [Wyze Plug Outdoor](https://www.amazon.com/dp/B08NXY7WWX?tag=sonoransoftwa-20)
+
+</details>
+
+<details>
+
+<summary>Govee</summary>
 
 Govee connects through the official cloud API key. Supported outlet models are H5080, H5081, H5082, H5083, and H5086.
 
-#### Shelly
+* [Govee Smart Plug (Wi-Fi + Bluetooth)](https://www.amazon.com/dp/B0948ZZZJP?tag=sonoransoftwa-20)
+* [Govee Dual Smart Plug](https://www.amazon.com/dp/B095KG3M4Y?tag=sonoransoftwa-20)
+* [Govee Smart Plug with Energy Monitoring](https://www.amazon.com/dp/B0CK28Y67D?tag=sonoransoftwa-20)
+
+</details>
+
+<details>
+
+<summary>Shelly</summary>
 
 Shelly works locally with Shelly Plus Plug US and Gen1, Gen2+, Gen3, or Gen4 devices that expose relay or switch outputs. Studio discovers Gen2+ devices through local mDNS. Enter an IP address or hostname for Gen1 devices. No hub or cloud connection is required. Device authentication must be disabled.
 
-Recommended product: [Shelly Plus Plug US](https://www.amazon.com/dp/B096W3ZZDD?tag=sonoransoftwa-20).
+* [Shelly Plus Plug US](https://www.amazon.com/dp/B096W3ZZDD?tag=sonoransoftwa-20)
 
-#### SwitchBot
+</details>
+
+<details>
+
+<summary>SwitchBot</summary>
 
 SwitchBot supports Plug, Plug Mini (US), Plug Mini (JP), and Plug Mini (EU). It uses official OpenAPI v1.1. Enter the token and secret from **Developer Options**. An internet connection is required.
 
-Recommended product: [SwitchBot Plug Mini (US)](https://www.amazon.com/dp/B0DSJK8B73?tag=sonoransoftwa-20).
+* [SwitchBot Plug Mini (US)](https://www.amazon.com/dp/B0DSJK8B73?tag=sonoransoftwa-20)
+
+</details>
 
 ## Provider Timing Reference
 
