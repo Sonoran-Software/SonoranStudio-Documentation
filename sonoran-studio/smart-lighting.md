@@ -1,21 +1,21 @@
 ---
 description: >-
-  Integrate smart lighting for in-game emergency lights, turn signals, CAD/Radio
-  events, and more!
+  Control RGB light color and power, plus smart outlet on/off states, in each
+  scene frame.
 icon: lightbulb
 ---
 
-# Smart Lighting
+# Smart Lights & Outlets
 
 {% hint style="info" %}
 Smart Lighting requires the [Pro version of Sonoran Studio](pricing.md) and the Windows or macOS desktop app.
 {% endhint %}
 
-## What is Smart Lighting?
+## What are Smart Lights & Outlets?
 
-Sonoran Studio connects to supported RGB lights to toggle and change colors based on stream events. With the FiveM, LSPDFR, and ER:LC integrations, you can build custom patterns for emergency lights, hazards, and turn signals. The same realtime Sonoran CAD and Radio events that power Studio widgets can trigger lighting sequences for transmissions, unit updates, calls, dispatch activity, and panic changes.
+Sonoran Studio controls RGB light color and power, plus smart outlet on/off state, in each scene frame. With the FiveM, LSPDFR, and ER:LC integrations, you can build custom patterns for emergency lights, hazards, and turn signals. The same realtime Sonoran CAD and Radio events that power Studio widgets can trigger device sequences for transmissions, unit updates, calls, dispatch activity, and panic changes.
 
-## What Lights are Supported?
+## Supported Devices
 
 Studio only lists lights that expose the color and power controls required by the selected provider. A product having Wi-Fi, Bluetooth, Matter, Alexa, or Google Home support does **not** by itself guarantee compatibility.
 
@@ -24,6 +24,10 @@ Smart lights are third-party products. Their manufacturers may change or retire 
 {% endhint %}
 
 Amazon links point to an exact product page when the model could be verified. Links marked **Amazon search** open a model-specific search; confirm the model or family shown below before ordering.
+
+As an Amazon Associate, Sonoran Software earns from qualifying purchases.
+
+### Smart Lights
 
 <details>
 
@@ -42,7 +46,7 @@ Supported color bulbs:
 
 * [Wyze Bulb Color A19, 2-pack](https://www.amazon.com/dp/B08WZ5THJ7?tag=sonoransoftwa-20)
 * [Wyze Bulb Color BR30, 2-pack](https://www.amazon.com/dp/B0CJN1FWX7?tag=sonoransoftwa-20)
-* [Wyze Light Strip (Amazon search)](https://www.amazon.com/s?k=Wyze+Light+Strip&tag=sonoransoftwa-20)
+* [Wyze Light Strip (Amazon search)](https://www.amazon.com/s?k=Wyze+Light+Strip\&tag=sonoransoftwa-20)
 * [Wyze Light Strip Pro](https://www.amazon.com/dp/B09K11GNFP?tag=sonoransoftwa-20)
 
 Wyze Light Strip and Light Strip Pro are detected by the current integration and receive a single solid RGB color across the strip. Segment and effect control are not supported. Because Wyze does not publish device-control rate limits for this endpoint, use frame delays of **1,000 ms or longer** for the most reliable sequences.
@@ -70,13 +74,13 @@ Compatible Hue families include color A19/BR30 bulbs, Lightstrip Plus and Gradie
 * [Single color bulb](https://www.amazon.com/dp/B0FMGTPGGT?tag=sonoransoftwa-20)
 * [Color bulb 4-pack](https://www.amazon.com/dp/B0FMH5C2CB?tag=sonoransoftwa-20)
 * [Hue Lightstrip Plus base kit](https://www.amazon.com/dp/B08CKJWSFS?tag=sonoransoftwa-20)
-* [White and color ambiance BR30 (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+White+and+Color+Ambiance+BR30&tag=sonoransoftwa-20)
-* [Gradient lightstrips (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Gradient+Lightstrip&tag=sonoransoftwa-20)
-* [Play light bars (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Play+Light+Bar&tag=sonoransoftwa-20)
-* [Hue Go (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Go&tag=sonoransoftwa-20)
-* [Hue Iris (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Iris&tag=sonoransoftwa-20)
-* [Hue Bloom (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Bloom&tag=sonoransoftwa-20)
-* [Hue Signe (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Signe&tag=sonoransoftwa-20)
+* [White and color ambiance BR30 (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+White+and+Color+Ambiance+BR30\&tag=sonoransoftwa-20)
+* [Gradient lightstrips (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Gradient+Lightstrip\&tag=sonoransoftwa-20)
+* [Play light bars (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Play+Light+Bar\&tag=sonoransoftwa-20)
+* [Hue Go (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Go\&tag=sonoransoftwa-20)
+* [Hue Iris (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Iris\&tag=sonoransoftwa-20)
+* [Hue Bloom (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Bloom\&tag=sonoransoftwa-20)
+* [Hue Signe (Amazon search)](https://www.amazon.com/s?k=Philips+Hue+Signe\&tag=sonoransoftwa-20)
 
 The Hue API recommends approximately **10 light commands per second**. Studio now queues Bridge writes at 100 ms intervals; use frame delays of at least **100 ms**, and longer delays for large groups. See the official [Hue rate-limit guidance](https://developers.meethue.com/support/) and [Hue Bridge overview](https://www.philips-hue.com/en-us/explore-hue/faq/controls/what-is-the-hue-bridge).
 
@@ -101,7 +105,7 @@ API-verified examples from Govee's [official supported-model list](https://devel
 * H605C Envisual TV Backlight T2 — [75–85 inch kit on Amazon](https://www.amazon.com/dp/B0BCQBVSDT?tag=sonoransoftwa-20)
 * H607C Floor Lamp 2 — [Amazon](https://www.amazon.com/dp/B0CTH2QF23?tag=sonoransoftwa-20)
 * H6062 Glide RGBIC 3D Wall Light — [Amazon](https://www.amazon.com/dp/B091L21GZK?tag=sonoransoftwa-20)
-* H7055 Outdoor Pathway Lights — [Amazon search](https://www.amazon.com/s?k=Govee+H7055+Outdoor+Pathway+Lights&tag=sonoransoftwa-20)
+* H7055 Outdoor Pathway Lights — [Amazon search](https://www.amazon.com/s?k=Govee+H7055+Outdoor+Pathway+Lights\&tag=sonoransoftwa-20)
 
 Many other Govee Wi-Fi products may appear automatically when the API reports both required capabilities. Bluetooth-only products are not supported. Studio applies one RGB color to the whole device; RGBIC segments, DreamView, scenes, and music effects are not controlled.
 
@@ -124,15 +128,15 @@ Nanoleaf uses its local OpenAPI on port `16021`; no cloud account or hub is requ
 
 Studio validates that the device reports RGB hue and saturation controls before adding it. Supported RGB families documented by Nanoleaf include:
 
-* [Shapes](https://www.amazon.com/s?k=Nanoleaf+Shapes&tag=sonoransoftwa-20), [Canvas](https://www.amazon.com/s?k=Nanoleaf+Canvas&tag=sonoransoftwa-20), [Lines](https://www.amazon.com/s?k=Nanoleaf+Lines&tag=sonoransoftwa-20), [Light Panels](https://www.amazon.com/s?k=Nanoleaf+Light+Panels&tag=sonoransoftwa-20), and [Skylight](https://www.amazon.com/s?k=Nanoleaf+Skylight&tag=sonoransoftwa-20) (Amazon searches)
-* Holiday String Lights NL71K1/NL71K2 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL71K1+NL71K2&tag=sonoransoftwa-20)
-* Indoor HD Lightstrip NL72K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K1&tag=sonoransoftwa-20)
-* Indoor Lightstrip NL72K3 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K3&tag=sonoransoftwa-20)
-* Floor Lamp NL72K4 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K4&tag=sonoransoftwa-20)
-* Rope Lights NL72K6 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K6&tag=sonoransoftwa-20)
-* Outdoor String Lights NL73K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL73K1&tag=sonoransoftwa-20)
-* Permanent Outdoor Lights NL73K3 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL73K3&tag=sonoransoftwa-20)
-* Wi-Fi A19 bulb NL75K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL75K1&tag=sonoransoftwa-20)
+* [Shapes](https://www.amazon.com/s?k=Nanoleaf+Shapes\&tag=sonoransoftwa-20), [Canvas](https://www.amazon.com/s?k=Nanoleaf+Canvas\&tag=sonoransoftwa-20), [Lines](https://www.amazon.com/s?k=Nanoleaf+Lines\&tag=sonoransoftwa-20), [Light Panels](https://www.amazon.com/s?k=Nanoleaf+Light+Panels\&tag=sonoransoftwa-20), and [Skylight](https://www.amazon.com/s?k=Nanoleaf+Skylight\&tag=sonoransoftwa-20) (Amazon searches)
+* Holiday String Lights NL71K1/NL71K2 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL71K1+NL71K2\&tag=sonoransoftwa-20)
+* Indoor HD Lightstrip NL72K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K1\&tag=sonoransoftwa-20)
+* Indoor Lightstrip NL72K3 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K3\&tag=sonoransoftwa-20)
+* Floor Lamp NL72K4 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K4\&tag=sonoransoftwa-20)
+* Rope Lights NL72K6 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL72K6\&tag=sonoransoftwa-20)
+* Outdoor String Lights NL73K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL73K1\&tag=sonoransoftwa-20)
+* Permanent Outdoor Lights NL73K3 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL73K3\&tag=sonoransoftwa-20)
+* Wi-Fi A19 bulb NL75K1 — [Amazon search](https://www.amazon.com/s?k=Nanoleaf+NL75K1\&tag=sonoransoftwa-20)
 
 Elements panels are not listed because they do not expose the RGB controls Studio requires. Studio controls one solid color for the entire device; panel layouts, per-panel colors, and effects are not controlled.
 
@@ -158,13 +162,13 @@ Studio queries the vendor and product ID of every responding device and checks i
 Amazon links for registry-backed RGB families:
 
 * [Color A19 1100-lumen, 2-pack](https://www.amazon.com/dp/B08FWH238Y?tag=sonoransoftwa-20)
-* [Color A21](https://www.amazon.com/s?k=LIFX+Color+A21&tag=sonoransoftwa-20), [Color BR30](https://www.amazon.com/s?k=LIFX+Color+BR30&tag=sonoransoftwa-20), and [Color GU10](https://www.amazon.com/s?k=LIFX+Color+GU10&tag=sonoransoftwa-20) (Amazon searches)
-* [Mini Color](https://www.amazon.com/s?k=LIFX+Mini+Color&tag=sonoransoftwa-20), [Clean](https://www.amazon.com/s?k=LIFX+Clean&tag=sonoransoftwa-20), and [Color Downlight](https://www.amazon.com/s?k=LIFX+Color+Downlight&tag=sonoransoftwa-20) (Amazon searches)
-* [Z/Lightstrip](https://www.amazon.com/s?k=LIFX+Z+Lightstrip&tag=sonoransoftwa-20), [Beam](https://www.amazon.com/s?k=LIFX+Beam&tag=sonoransoftwa-20), and [Tile](https://www.amazon.com/s?k=LIFX+Tile&tag=sonoransoftwa-20) (Amazon searches)
-* [Candle Color](https://www.amazon.com/s?k=LIFX+Candle+Color&tag=sonoransoftwa-20), [Neon](https://www.amazon.com/s?k=LIFX+Neon&tag=sonoransoftwa-20), and [String Lights](https://www.amazon.com/s?k=LIFX+String+Lights&tag=sonoransoftwa-20) (Amazon searches)
-* [Ceiling](https://www.amazon.com/s?k=LIFX+Ceiling&tag=sonoransoftwa-20), [Spot](https://www.amazon.com/s?k=LIFX+Spot&tag=sonoransoftwa-20), and [Path](https://www.amazon.com/s?k=LIFX+Path&tag=sonoransoftwa-20) (Amazon searches)
-* [Color PAR38](https://www.amazon.com/s?k=LIFX+Color+PAR38&tag=sonoransoftwa-20), [Tube](https://www.amazon.com/s?k=LIFX+Tube&tag=sonoransoftwa-20), and [Luna](https://www.amazon.com/s?k=LIFX+Luna&tag=sonoransoftwa-20) (Amazon searches)
-* [Mirror](https://www.amazon.com/s?k=LIFX+Mirror&tag=sonoransoftwa-20) and [RGB outdoor families](https://www.amazon.com/s?k=LIFX+Outdoor+Color&tag=sonoransoftwa-20) (Amazon searches)
+* [Color A21](https://www.amazon.com/s?k=LIFX+Color+A21\&tag=sonoransoftwa-20), [Color BR30](https://www.amazon.com/s?k=LIFX+Color+BR30\&tag=sonoransoftwa-20), and [Color GU10](https://www.amazon.com/s?k=LIFX+Color+GU10\&tag=sonoransoftwa-20) (Amazon searches)
+* [Mini Color](https://www.amazon.com/s?k=LIFX+Mini+Color\&tag=sonoransoftwa-20), [Clean](https://www.amazon.com/s?k=LIFX+Clean\&tag=sonoransoftwa-20), and [Color Downlight](https://www.amazon.com/s?k=LIFX+Color+Downlight\&tag=sonoransoftwa-20) (Amazon searches)
+* [Z/Lightstrip](https://www.amazon.com/s?k=LIFX+Z+Lightstrip\&tag=sonoransoftwa-20), [Beam](https://www.amazon.com/s?k=LIFX+Beam\&tag=sonoransoftwa-20), and [Tile](https://www.amazon.com/s?k=LIFX+Tile\&tag=sonoransoftwa-20) (Amazon searches)
+* [Candle Color](https://www.amazon.com/s?k=LIFX+Candle+Color\&tag=sonoransoftwa-20), [Neon](https://www.amazon.com/s?k=LIFX+Neon\&tag=sonoransoftwa-20), and [String Lights](https://www.amazon.com/s?k=LIFX+String+Lights\&tag=sonoransoftwa-20) (Amazon searches)
+* [Ceiling](https://www.amazon.com/s?k=LIFX+Ceiling\&tag=sonoransoftwa-20), [Spot](https://www.amazon.com/s?k=LIFX+Spot\&tag=sonoransoftwa-20), and [Path](https://www.amazon.com/s?k=LIFX+Path\&tag=sonoransoftwa-20) (Amazon searches)
+* [Color PAR38](https://www.amazon.com/s?k=LIFX+Color+PAR38\&tag=sonoransoftwa-20), [Tube](https://www.amazon.com/s?k=LIFX+Tube\&tag=sonoransoftwa-20), and [Luna](https://www.amazon.com/s?k=LIFX+Luna\&tag=sonoransoftwa-20) (Amazon searches)
+* [Mirror](https://www.amazon.com/s?k=LIFX+Mirror\&tag=sonoransoftwa-20) and [RGB outdoor families](https://www.amazon.com/s?k=LIFX+Outdoor+Color\&tag=sonoransoftwa-20) (Amazon searches)
 
 LIFX White, White-to-Warm, Day & Dusk, Filament, and Switch products are excluded because they do not declare RGB color capability. Unknown product IDs also remain hidden until their capabilities can be verified. Studio applies one solid color to the entire light; it does not address individual Beam, Tile, Candle, String, or lightstrip zones.
 
@@ -195,28 +199,52 @@ The WLED API explicitly advises clients not to make requests in parallel. Studio
 
 </details>
 
+### Smart Outlets
+
+#### Wyze
+
+Wyze connects through the cloud. Studio supports Wyze Plug and each independently exposed outlet on Wyze Outdoor Plug. Use the same Wyze email, password, key ID, and API key described above.
+
+#### Govee
+
+Govee connects through the official cloud API key. Supported outlet models are H5080, H5081, H5082, H5083, and H5086.
+
+#### Shelly
+
+Shelly works locally with Shelly Plus Plug US and Gen1, Gen2+, Gen3, or Gen4 devices that expose relay or switch outputs. Studio discovers Gen2+ devices through local mDNS. Enter an IP address or hostname for Gen1 devices. No hub or cloud connection is required. Device authentication must be disabled.
+
+Recommended product: [Shelly Plus Plug US](https://www.amazon.com/dp/B096W3ZZDD?tag=sonoransoftwa-20).
+
+#### SwitchBot
+
+SwitchBot supports Plug, Plug Mini (US), Plug Mini (JP), and Plug Mini (EU). It uses official OpenAPI v1.1. Enter the token and secret from **Developer Options**. An internet connection is required.
+
+Recommended product: [SwitchBot Plug Mini (US)](https://www.amazon.com/dp/B0DSJK8B73?tag=sonoransoftwa-20).
+
 ## Provider Timing Reference
 
-| Provider | Connection | Studio guard | Recommended frame delay |
-| --- | --- | --- | --- |
-| Wyze | Cloud | One combined action per light | 1,000 ms or longer |
-| Philips Hue | Local Hue Bridge | 100 ms between Bridge writes | 100 ms or longer; increase for large groups |
-| Govee | Cloud | 500 ms/device and 84 ms/account | 1,000 ms or longer |
-| Nanoleaf | Local network | 100 ms/device | 100 ms or longer |
-| LIFX | Local UDP | Acknowledged commands, one queue per light | 100 ms or longer |
-| WLED | Local HTTP | One global sequential request queue | 100 ms or longer |
+| Provider    | Connection       | Studio guard                                                          | Recommended frame delay                     |
+| ----------- | ---------------- | --------------------------------------------------------------------- | ------------------------------------------- |
+| Wyze        | Cloud            | One combined action per light                                         | 1,000 ms or longer                          |
+| Philips Hue | Local Hue Bridge | 100 ms between Bridge writes                                          | 100 ms or longer; increase for large groups |
+| Govee       | Cloud            | 500 ms/device and 84 ms/account                                       | 1,000 ms or longer                          |
+| Nanoleaf    | Local network    | 100 ms/device                                                         | 100 ms or longer                            |
+| LIFX        | Local UDP        | Acknowledged commands, one queue per light                            | 100 ms or longer                            |
+| WLED        | Local HTTP       | One global sequential request queue                                   | 100 ms or longer                            |
+| Shelly      | Local HTTP       | Direct on/off per outlet                                              | 100 ms or longer                            |
+| SwitchBot   | Cloud            | Signed OpenAPI command per outlet; 10,000 API calls/day account limit | 1,000 ms or longer                          |
 
-## Creating Light Sequences
+## Creating Device Sequences
 
-Light sequences tell Studio which lights to use, what color each light should display, and how long each frame should remain active. Each game or CAD/Radio widget event has its own saved sequence.
+Device sequences tell Studio which lights or outlets to use and how long each frame remains active. Each game or CAD/Radio widget event has its own saved sequence.
 
 ### 1. Choose a game source
 
 Open **Smart Lighting** in the Sonoran Studio desktop app. Under **Choose your game**, select **FiveM**, **LSPDFR**, or **ER:LC**. The scene editor shows the events supported by that game followed by the CAD and Radio widget events, which are available with any selected game.
 
-### 2. Connect your lights
+### 2. Connect your devices
 
-Under **Connect devices**, choose your provider and follow the connection steps. After Studio discovers the lights, they are available in every scene and frame.
+Under **Connect devices**, choose your provider and follow the connection steps. After Studio discovers the devices, they are available in every scene and frame.
 
 ### 3. Select the event
 
@@ -224,15 +252,15 @@ Under **Build event scenes**, use **Scene event** to select the event you want t
 
 ### 4. Build the frames
 
-The first frame is created for you. Select the frame, check the lights that should participate, choose a color for each selected light, and set **Delay to next frame** in milliseconds.
+The first frame is created for you. Select smart lights with colors and power, or smart outlets with on/off state. Then set **Delay to next frame** in milliseconds.
 
-Select **Add frame** to copy the selected frame, then change its lights, colors, or delay. Drag frame cards to reorder them. A sequence can contain up to 40 frames, and each frame delay can be between 50 and 60,000 milliseconds.
+Select **Add frame** to copy the selected frame, then change its devices, colors, states, or delay. Drag frame cards to reorder them. A sequence can contain up to 40 frames, and each frame delay can be between 50 and 60,000 milliseconds.
 
-<figure><img src="../.gitbook/assets/smart-lighting-sequence-overview.png" alt="The Sonoran Studio lighting sequence editor showing three frames for a panic event"><figcaption>A three-frame panic sequence using different colors and lights in each frame.</figcaption></figure>
+<figure><img src="../.gitbook/assets/smart-lighting-sequence-overview.png" alt="The Sonoran Studio lighting sequence editor showing three frames for a panic event"><figcaption><p>A three-frame panic sequence using different colors and lights in each frame.</p></figcaption></figure>
 
-Each frame can control a different set of lights. A light that is not selected in a frame is left unchanged during that frame.
+Each frame can control a different set of devices. A light or outlet not selected in a frame remains unchanged during that frame.
 
-<figure><img src="../.gitbook/assets/smart-lighting-frame-editor.png" alt="The Sonoran Studio frame editor with light selection, colors, and delay controls"><figcaption>Select the lights and colors for the active frame, then set the time until the next frame.</figcaption></figure>
+<figure><img src="../.gitbook/assets/smart-lighting-frame-editor.png" alt="The Sonoran Studio frame editor with light selection, colors, and delay controls"><figcaption><p>Select the lights and colors for the active frame, then set the time until the next frame.</p></figcaption></figure>
 
 ### 5. Test and save
 
@@ -244,19 +272,19 @@ When a live game or unit-status state occurs, Studio loops that saved sequence u
 
 The Studio desktop app receives these events through the same authenticated realtime connection used by the overlay widgets. Configure any of them under **CAD & Radio widget events** in the scene selector.
 
-| Scene event | When it runs |
-| --- | --- |
-| Radio transmission started | A radio transmission begins |
-| Radio transmission ended | The active radio transmission finishes |
-| Radio channel changed | Your active Radio channel changes |
-| Unit status changed | Your CAD unit receives a status update |
-| Call attached | You attach to a different CAD call |
-| Attached call changed | The currently attached call updates |
-| Call detached | You detach from the active CAD call |
-| Call note | A dispatch notification is identified as a call note |
-| Dispatch notification | Any other CAD dispatch notification arrives |
-| Panic started | A panic visible to your Studio overlay activates |
-| Panic ended | That visible panic clears |
+| Scene event                | When it runs                                         |
+| -------------------------- | ---------------------------------------------------- |
+| Radio transmission started | A radio transmission begins                          |
+| Radio transmission ended   | The active radio transmission finishes               |
+| Radio channel changed      | Your active Radio channel changes                    |
+| Unit status changed        | Your CAD unit receives a status update               |
+| Call attached              | You attach to a different CAD call                   |
+| Attached call changed      | The currently attached call updates                  |
+| Call detached              | You detach from the active CAD call                  |
+| Call note                  | A dispatch notification is identified as a call note |
+| Dispatch notification      | Any other CAD dispatch notification arrives          |
+| Panic started              | A panic visible to your Studio overlay activates     |
+| Panic ended                | That visible panic clears                            |
 
 Location-only unit updates do not trigger **Unit status changed**, preventing routine location refreshes from repeatedly interrupting lighting. Widget-event scenes are optional: an event with no saved frames leaves the current lighting scene unchanged.
 
