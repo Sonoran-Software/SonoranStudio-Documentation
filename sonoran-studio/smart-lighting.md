@@ -1,23 +1,23 @@
 ---
 description: >-
-  Control RGB light color and power, plus smart outlet on/off states, in each
+  Control RGB lights, smart outlets, and SwitchBot button pressers in each
   scene frame.
 icon: lightbulb
 ---
 
-# Smart Lights & Outlets
+# Smart Lights, Outlets & Buttons
 
 {% hint style="info" %}
 Smart Lighting requires the [Pro version of Sonoran Studio](pricing.md) and the Windows or macOS desktop app.
 {% endhint %}
 
-## What are Smart Lights & Outlets?
+## What are Smart Lights, Outlets & Buttons?
 
-Sonoran Studio controls RGB light color and power, plus smart outlet on/off state, in each scene frame. With the FiveM, LSPDFR, and ER:LC integrations, you can build custom patterns for emergency lights, hazards, and turn signals. The same realtime Sonoran CAD and Radio events that power Studio widgets can trigger device sequences for transmissions, unit updates, calls, dispatch activity, and panic changes.
+Sonoran Studio controls RGB light color and power, smart outlet on/off state, and SwitchBot Bot actions in each scene frame. With the FiveM, LSPDFR, and ER:LC integrations, you can build custom patterns for emergency lights, hazards, and turn signals. The same realtime Sonoran CAD and Radio events that power Studio widgets can trigger device sequences for transmissions, unit updates, calls, dispatch activity, and panic changes.
 
 ## Supported Devices
 
-Studio only lists lights that expose the color and power controls required by the selected provider. A product having Wi-Fi, Bluetooth, Matter, Alexa, or Google Home support does **not** by itself guarantee compatibility.
+Studio only lists devices that expose the controls required by the selected provider. A product having Wi-Fi, Bluetooth, Matter, Alexa, or Google Home support does **not** by itself guarantee compatibility.
 
 {% hint style="warning" %}
 Smart lights are third-party products. Their manufacturers may change or retire cloud and local APIs. Match the exact brand, family, and requirements below before purchasing.
@@ -250,6 +250,25 @@ SwitchBot supports Plug, Plug Mini (US), Plug Mini (JP), and Plug Mini (EU). It 
 
 </details>
 
+### Button Pressers
+
+<details>
+
+<summary>SwitchBot Bot</summary>
+
+Studio supports the SwitchBot Bot through SwitchBot's official OpenAPI v1.1. Configure the Bot's mechanical movement and operating mode in the **SwitchBot app**. The Bot must be connected through a SwitchBot Hub with Cloud Services enabled so it appears through the API.
+
+1. In the SwitchBot app, add the Bot, connect it to a Hub, and configure it as **Press Mode**, **Switch Mode**, or **Custom Mode**.
+2. Enable Cloud Services or Third-party Services for the Bot.
+3. Obtain the account token and secret from **Developer Options** in the SwitchBot app.
+4. In Studio, open **Other**, select **SwitchBot**, enter the token and secret, and select **Connect SwitchBot & find Bots**.
+
+Studio reads the operating mode reported by each Bot before displaying it. Press Mode and Custom Mode provide a **Press** action. Switch Mode provides separate **On** and **Off** actions. If Studio cannot verify a Bot's mode, it does not list that Bot instead of risking an incorrect command.
+
+Select the Bot and action for any frame just like a light or outlet. Studio sends the documented `press`, `turnOn`, or `turnOff` command when that frame runs. See SwitchBot's official [Bot API reference](https://github.com/OpenWonderLabs/SwitchBotAPI/blob/main/devices/others/bot.md).
+
+</details>
+
 ## Provider Timing Reference
 
 | Provider    | Connection       | Studio guard                                                          | Recommended frame delay                     |
@@ -261,11 +280,11 @@ SwitchBot supports Plug, Plug Mini (US), Plug Mini (JP), and Plug Mini (EU). It 
 | LIFX        | Local UDP        | Acknowledged commands, one queue per light                            | 100 ms or longer                            |
 | WLED        | Local HTTP       | One global sequential request queue                                   | 100 ms or longer                            |
 | Shelly      | Local HTTP       | Direct on/off per outlet                                              | 100 ms or longer                            |
-| SwitchBot   | Cloud            | Signed OpenAPI command per outlet; 10,000 API calls/day account limit | 1,000 ms or longer                          |
+| SwitchBot   | Cloud            | Signed OpenAPI command per plug or Bot; 10,000 API calls/day account limit | 1,000 ms or longer                      |
 
 ## Creating Device Sequences
 
-Device sequences tell Studio which lights or outlets to use and how long each frame remains active. Each game or CAD/Radio widget event has its own saved sequence.
+Device sequences tell Studio which lights, outlets, or button pressers to use and how long each frame remains active. Each game or CAD/Radio widget event has its own saved sequence.
 
 ### 1. Choose a game source
 
@@ -291,13 +310,13 @@ The grouped choices are:
 
 ### 4. Build the frames
 
-The first frame is created for you. Select smart lights with colors and power, or smart outlets with on/off state. When compatible Govee lights report scenes, a separate **Govee scenes** area appears below the device list. Select a built-in scene, DIY scene, or snapshot card to assign that specific light and effect to the active frame. Then set **Delay to next frame** in milliseconds.
+The first frame is created for you. Select smart lights with colors and power, smart outlets with on/off state, or SwitchBot Bots with their available Press, On, or Off action. When compatible Govee lights report scenes, a separate **Govee scenes** area appears below the device list. Select a built-in scene, DIY scene, or snapshot card to assign that specific light and effect to the active frame. Then set **Delay to next frame** in milliseconds.
 
 Select **Add frame** to copy the selected frame, then change its devices, colors, states, or delay. Drag frame cards to reorder them. A sequence can contain up to 40 frames, and each frame delay can be between 50 and 60,000 milliseconds.
 
 <figure><img src="../.gitbook/assets/smart-lighting-sequence-overview.png" alt="The Sonoran Studio lighting sequence editor showing three frames for a panic event"><figcaption><p>A three-frame panic sequence using different colors and lights in each frame.</p></figcaption></figure>
 
-Each frame can control a different set of devices. A light or outlet not selected in a frame remains unchanged during that frame.
+Each frame can control a different set of devices. A light, outlet, or Bot not selected in a frame remains unchanged during that frame.
 
 <figure><img src="../.gitbook/assets/smart-lighting-frame-editor.png" alt="The Sonoran Studio frame editor with light selection, colors, and delay controls"><figcaption><p>Select the lights and colors for the active frame, then set the time until the next frame.</p></figcaption></figure>
 
