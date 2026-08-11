@@ -97,7 +97,7 @@ Govee connects through the official cloud API and requires a [Govee API key](htt
 1. Add every light in the Govee Home app and confirm it is online over Wi-Fi. Bluetooth-only products cannot use this connection.
 2. Sign in to the [Govee developer portal](https://developer.govee.com/) with the account that owns the lights and request an API key.
 3. In Studio, select **Govee Wi-Fi**, paste the API key, and select **Connect Govee & find lights**.
-4. Studio lists only devices whose API capabilities include both RGB color and power control, then loads the named scenes Govee exposes for each compatible light.
+4. Studio lists only devices whose API capabilities include both RGB color and power control, then loads the built-in scenes, DIY scenes, and snapshots Govee exposes for each compatible light.
 
 API-verified examples from Govee's [official supported-model list](https://developer.govee.com/docs/support-product-model):
 
@@ -107,9 +107,13 @@ API-verified examples from Govee's [official supported-model list](https://devel
 * H6062 Glide RGBIC 3D Wall Light — [Amazon](https://www.amazon.com/dp/B091L21GZK?tag=sonoransoftwa-20)
 * H7055 Outdoor Pathway Lights — [Amazon search](https://www.amazon.com/s?k=Govee+H7055+Outdoor+Pathway+Lights\&tag=sonoransoftwa-20)
 
-Many other Govee Wi-Fi products may appear automatically when the API reports both required capabilities. Bluetooth-only products are not supported. For each frame, choose **Custom color** or one of the named scenes returned by Govee. Scene availability varies by model and firmware; lights without a reported `lightScene` capability continue to use RGB color. RGBIC segment layouts, DreamView, and music effects are not controlled.
+Many other Govee Wi-Fi products may appear automatically when the API reports both required capabilities. Bluetooth-only products are not supported. Scene availability varies by model, firmware, and the capabilities Govee exposes for that specific light. Lights without reported scene capabilities continue to use RGB color. RGBIC segment layouts, DreamView, music effects, and Govee device groups are not controlled.
 
-Studio retrieves dynamic options from Govee's official [Get Dynamic Scene](https://developer.govee.com/reference/get-light-scene) endpoint and triggers the selected `dynamic_scene` / `lightScene` capability through the [device-control API](https://developer.govee.com/reference/control-you-devices).
+Create and edit custom effects in the **Govee Home** app. Re-scan Govee in Studio after changing them. The frame editor displays a **Govee scenes** area containing the named built-in scenes, DIY scenes, and snapshots returned for each light. Select a scene card to add that light and scene to the active frame; select it again to remove it from the frame.
+
+Govee scenes are per-device rather than account-level groups. Studio retrieves built-in scenes and DIY scenes through Govee's official [scene endpoints](https://developer.govee.com/reference/get-light-scene), preserves the exact capability type, instance, and value returned for that light, and sends that tuple through the [device-control API](https://developer.govee.com/reference/control-you-devices). This is important because Govee models can expose DIY scenes under different capability types.
+
+Activating a scene powers the light on and then applies the selected effect. Govee does not expose a separate scene-off command. To replace an active effect, use another scene or a custom color in a later frame. Removing a scene card from a frame means Studio sends no command for that light during the frame; it does not turn the light off.
 
 Govee permits **2 control requests per second per device** and **12 per second per account**. Turning a light on with a new color or scene requires two requests. Studio queues requests at 500 ms per device and 84 ms per account; use frame delays of **1,000 ms or longer** for cloud reliability.
 
@@ -287,7 +291,7 @@ The grouped choices are:
 
 ### 4. Build the frames
 
-The first frame is created for you. Select smart lights with colors and power, or smart outlets with on/off state. Compatible Govee lights also show a mode selector where you can choose **Custom color** or a named Govee scene. Then set **Delay to next frame** in milliseconds.
+The first frame is created for you. Select smart lights with colors and power, or smart outlets with on/off state. When compatible Govee lights report scenes, a separate **Govee scenes** area appears below the device list. Select a built-in scene, DIY scene, or snapshot card to assign that specific light and effect to the active frame. Then set **Delay to next frame** in milliseconds.
 
 Select **Add frame** to copy the selected frame, then change its devices, colors, states, or delay. Drag frame cards to reorder them. A sequence can contain up to 40 frames, and each frame delay can be between 50 and 60,000 milliseconds.
 
