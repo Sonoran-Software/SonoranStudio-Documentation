@@ -378,11 +378,14 @@ FiveM can connect through the latest Sonoran CAD FiveM resource or through the s
 #### Install the standalone resource
 
 1. [Download the standalone FiveM resource](https://github.com/Sonoran-Software/Sonoran-Studio-Releases/releases/download/fivem-latest/Sonoran-Studio-FiveM.zip).
-2. Extract the ZIP and copy the `sonoran_studio` folder into the server's `resources` folder.
-3. Add `ensure sonoran_studio` to `server.cfg`.
-4. Restart the server and keep the Sonoran Studio desktop app open while playing.
+2. Extract the ZIP's `[sonoran_studio]` folder directly into the server's `resources` folder.
+3. Add `exec @sonoran_studio/sonoran_studio.cfg` to `server.cfg`.
+4. Remove any other line that starts `sonoran_studio`, including `ensure sonoran_studio` or an ensured parent folder. Only use the `exec` line above.
+5. Restart the server and keep the Sonoran Studio desktop app open while playing.
 
 Do not run the standalone resource alongside the Sonoran CAD FiveM resource; both contain the Studio bridge and would report every event twice. The default desktop port is `9990`. Players using a different local Studio port can run `/setstudioport PORT` in FiveM.
+
+Automatic resource updates are enabled by default. Run `sonoranstudio update` in the **server console** to check immediately. If the resource reports an updater permission, helper, or folder-layout error, reinstall the complete ZIP and confirm that `server.cfg` uses only the bundled `exec` line.
 
 FiveM scenes include emergency lights, turn signals, hazards, and the gameplay moments listed above. Sonoran CAD unit statuses, calls, Radio activity, and panic events remain available when the player is also signed into the corresponding Sonoran community.
 
